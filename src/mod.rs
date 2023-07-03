@@ -1,3 +1,5 @@
+#[macro_use]
+extern crate colored;
 use colored::*;
 
 #[derive(Copy, Clone)]
@@ -40,6 +42,24 @@ pub impl Logger {
     pub fn warn(&self, message: &str) {
         self.log(LogLevel::Warn, message);
     }
+}
+
+macro_rules! debug {
+    ($logger:expr, $message:expr) => {
+        $logger.debug($message);
+    };
+}
+
+macro_rules! warn {
+    ($logger:expr, $message:expr) => {
+        $logger.warn($message);
+    };
+}
+
+macro_rules! error {
+    ($logger:expr, $message:expr) => {
+        $logger.error($message);
+    };
 }
 
 fn level_to_string(level: LogLevel) -> String {
