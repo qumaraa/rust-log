@@ -23,3 +23,6 @@ fn main() {
     logger.warn("This is a warning message [SELF]");
 }
 ```
+
+![image](https://github.com/alexanderqmv/rust-log/assets/112755279/04eafbeb-092c-4fb5-a3ea-942ec1b6ccd8)
+
