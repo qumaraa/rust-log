@@ -1,6 +1,7 @@
-#[macro_use]
 extern crate colored;
 use colored::*;
+use chrono::Utc;
+
 
 #[derive(Copy, Clone)]
 pub enum LogLevel {
@@ -10,20 +11,21 @@ pub enum LogLevel {
     Warn,
 }
 
+
 #[derive(Copy, Clone)]
 pub struct Logger {
     level: LogLevel,
 }
 
-
-pub impl Logger {
+impl Logger {
     pub fn new(level: LogLevel) -> Self {
         Logger { level }
     }
 
     fn log(&self, level: LogLevel, message: &str) {
-        if level as u32 >= self.level as u32 {
-            println!("[{}] {}", level_to_string(level.clone()), message);
+        if level as u8 >= self.level as u8 {
+            let now = Utc::now();
+            println!("[{}] {} - {}", level_to_string(level.clone()),now,message);
         }
     }
 
@@ -62,10 +64,16 @@ macro_rules! error {
     };
 }
 
+macro_rules! info {
+    ($logger:expr, $message:expr) => {
+        $logger.info($message);
+    };
+}
+
 fn level_to_string(level: LogLevel) -> String {
     match level {
         LogLevel::Debug => format!("{}", "DEBUG".blue().italic().underline().dimmed()),
-        LogLevel::Info => format!("{}", "INFO".green().italic().bold()),
+        LogLevel::Info => format!("{}", "INFO".green().bold()),
         LogLevel::Error => format!("{}", "ERROR".red().italic().bold()),
         LogLevel::Warn => format!("{}", "WARN".yellow().bold().dimmed()),
     }
