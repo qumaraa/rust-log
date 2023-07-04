@@ -2,14 +2,14 @@ extern crate colored;
 use colored::*;
 use chrono::Utc;
 
-
 #[derive(Copy, Clone)]
 pub enum LogLevel {
     Debug,
     Info,
     Error,
     Warn,
-    Panic,
+    Fatal,
+    Critical,
 }
 
 
@@ -46,8 +46,11 @@ impl Logger {
         self.log(LogLevel::Warn, message);
     }
 
-    pub fn panic(&self, message: &str) {
-        self.log(LogLevel::Panic, message);
+    pub fn fatal(&self, message: &str) {
+        self.log(LogLevel::Fatal, message);
+    }
+    pub fn critical(&self, message: &str) {
+        self.log(LogLevel::Critical, message);
     }
 }
 
@@ -75,9 +78,15 @@ macro_rules! info {
     };
 }
 
-macro_rules! panic {
+macro_rules! fatal {
     ($logger:expr, $message:expr) => {
-        $logger.panic($message);
+        $logger.fatal($message);
+    };
+}
+
+macro_rules! critical {
+    ($logger:expr, $message:expr) => {
+        $logger.critical($message);
     };
 }
 
@@ -87,6 +96,7 @@ fn level_to_string(level: LogLevel) -> String {
         LogLevel::Info => format!("{}", "INFO".green().bold()),
         LogLevel::Error => format!("{}", "ERROR".red().italic().bold()),
         LogLevel::Warn => format!("{}", "WARN".yellow().on_yellow().bold().dimmed()),
-        LogLevel::Panic => format!("{}", "PANIC".on_bright_red().white().bold().underline()),
+        LogLevel::Fatal => format!("{}", "FATAL".on_bright_red().white().bold().underline()),
+        LogLevel::Critical => format!("{}", "CRITICAL".bright_red().bold().italic().underline()),
     }
 }
