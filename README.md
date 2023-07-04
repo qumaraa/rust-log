@@ -19,7 +19,7 @@ fn main() {
     debug!(logger, "This is a debug message");
     error!(logger, "This is an error message");
 
-    // Example гsing a class object to access functions
+    // Example using a class object to access functions
     logger.warn("This is a warning message [SELF]");
 }
 ```
