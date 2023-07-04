@@ -18,10 +18,11 @@ fn main() {
     warn!(logger, "This is a warning message");
     debug!(logger, "This is a debug message");
     error!(logger, "This is an error message");
-    panic!(logger, "This is a panic message");
     // Example using a class object to access functions
-
     logger.warn("This is a warning message [SELF]");
+
+    fatal!(logger, "This is a fatal message");
+    critical!(logger, "This is a critical message!");
 }
 ```
 
