@@ -27,5 +27,8 @@ fn main() {
 ```
 ![image](https://github.com/alexanderqmv/rust-log/assets/112755279/9fd00752-6c0a-4e2a-9293-d6760032958d)
 
+## Dependencies 
+colored = "1.6"
+chrono = "0.4.26"
 
-
+## Contact Me on Instagram: aleksandre.qmv
