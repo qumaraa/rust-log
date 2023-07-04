@@ -14,7 +14,7 @@ fn main() {
     let mut logger = Logger::new(LogLevel::Info);
     // Example using macros!
 
-    info!(logger, "This is an info mssage");
+    info!(logger, "This is an info message");
     warn!(logger, "This is a warning message");
     debug!(logger, "This is a debug message");
     error!(logger, "This is an error message");
