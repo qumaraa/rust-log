@@ -9,6 +9,7 @@ pub enum LogLevel {
     Info,
     Error,
     Warn,
+    Panic,
 }
 
 
@@ -44,6 +45,10 @@ impl Logger {
     pub fn warn(&self, message: &str) {
         self.log(LogLevel::Warn, message);
     }
+
+    pub fn panic(&self, message: &str) {
+        self.log(LogLevel::Panic, message);
+    }
 }
 
 macro_rules! debug {
@@ -70,11 +75,18 @@ macro_rules! info {
     };
 }
 
+macro_rules! panic {
+    ($logger:expr, $message:expr) => {
+        $logger.panic($message);
+    };
+}
+
 fn level_to_string(level: LogLevel) -> String {
     match level {
-        LogLevel::Debug => format!("{}", "DEBUG".blue().italic().underline().dimmed()),
+        LogLevel::Debug => format!("{}", "DEBUG".cyan().italic().underline()),
         LogLevel::Info => format!("{}", "INFO".green().bold()),
         LogLevel::Error => format!("{}", "ERROR".red().italic().bold()),
-        LogLevel::Warn => format!("{}", "WARN".yellow().bold().dimmed()),
+        LogLevel::Warn => format!("{}", "WARN".yellow().on_yellow().bold().dimmed()),
+        LogLevel::Panic => format!("{}", "PANIC".on_bright_red().white().bold().underline()),
     }
 }
