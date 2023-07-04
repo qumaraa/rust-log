@@ -25,6 +25,7 @@ fn main() {
     critical!(logger, "This is a critical message!");
 }
 ```
-![image](https://github.com/alexanderqmv/rust-log/assets/112755279/f7106969-eed3-4fbb-9b6a-3a9ed9d5793e)
+![image](https://github.com/alexanderqmv/rust-log/assets/112755279/9fd00752-6c0a-4e2a-9293-d6760032958d)
+
 
 
